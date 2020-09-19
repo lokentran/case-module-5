@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', '\App\Http\Controllers\LoginController@showFormLogin')->name('login');
 Route::get('/register', '\App\Http\Controllers\LoginController@showFormRegister');
-
+Route::post('/register', '\App\Http\Controllers\LoginController@register')->name('register');
 
 
 // Route::get('/', '');

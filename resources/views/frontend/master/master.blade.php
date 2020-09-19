@@ -7,6 +7,9 @@
     <title>Document</title>
     <base href="{{ asset('') }}">
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 <body>
     <!-- Preloader -->
@@ -15,177 +18,20 @@
     </div>
 
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-
-        <!-- Top Header Area -->
-        <div class="top-header-area">
-            <div class="h-100 d-md-flex justify-content-between align-items-center">
-                <div class="email-address">
-                    <a href="mailto:contact@southtemplate.com">contact@southtemplate.com</a>
-                </div>
-                <div class="phone-number d-flex">
-                    <div class="icon">
-                        <img src="img/icons/phone-call.png" alt="">
-                    </div>
-                    <div class="number">
-                        <a href="tel:+45 677 8993000 223">+45 677 8993000 223</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Header Area -->
-        <div class="main-header-area" id="stickyHeader">
-            <div class="classy-nav-container breakpoint-off">
-                <!-- Classy Menu -->
-                <nav class="classy-navbar justify-content-between" id="southNav">
-
-                    <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <!-- Menu -->
-                    <div class="classy-menu">
-
-                        <!-- close btn -->
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-
-                        <!-- Nav Start -->
-                        <div class="classynav">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="#">Listings</a>
-                                            <ul class="dropdown">
-                                                <li><a href="listings.html">Listings</a></li>
-                                                <li><a href="single-listings.html">Single Listings</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Blog</a>
-                                            <ul class="dropdown">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="single-blog.html">Single Blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="elements.html">Elements</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="listings.html">Properties</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="#">Mega Menu</a>
-                                    <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 1</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 2</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 3</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 4</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-
-                            <!-- Search Form -->
-                            <div class="south-search-form">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search Anything ...">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </form>
-                            </div>
-
-                            <!-- Search Button -->
-                            <a href="#" class="searchbtn"><i class="fa" aria-hidden="true"></i></a>
-                        </div>
-                        <!-- Nav End -->
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
+    @include('frontend.master.header')
     <!-- ##### Header Area End ##### -->
 
+    <!-- ##### Content ##### -->
+    @yield('content')
+    <!-- ##### Content ##### -->
+
+
     <!-- ##### Hero Area Start ##### -->
-    <section class="hero-area">
-        <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero1.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="hero-slides-content">
-                                <h2 data-animation="fadeInUp" data-delay="100ms">Find your home</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero2.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="hero-slides-content">
-                                <h2 data-animation="fadeInUp" data-delay="100ms">Find your dream house</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Single Hero Slide -->
-            <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/hero3.jpg);">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="hero-slides-content">
-                                <h2 data-animation="fadeInUp" data-delay="100ms">Find your perfect house</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {{-- @include('frontend.master.slider') --}}
     <!-- ##### Hero Area End ##### -->
 
     <!-- ##### Advance Search Area Start ##### -->
-    <div class="south-search-area">
+    {{-- <div class="south-search-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -407,11 +253,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ##### Advance Search Area End ##### -->
 
     <!-- ##### Featured Properties Area Start ##### -->
-    <section class="featured-properties-area section-padding-100-50">
+    {{-- <section class="featured-properties-area section-padding-100-50">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -665,11 +511,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Featured Properties Area End ##### -->
 
     <!-- ##### Call To Action Area Start ##### -->
-    <section class="call-to-action-area bg-fixed bg-overlay-black" style="background-image: url(img/bg-img/cta.jpg)">
+    {{-- <section class="call-to-action-area bg-fixed bg-overlay-black" style="background-image: url(img/bg-img/cta.jpg)">
         <div class="container h-100">
             <div class="row align-items-center h-100">
                 <div class="col-12">
@@ -681,11 +527,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Call To Action Area End ##### -->
 
     <!-- ##### Testimonials Area Start ##### -->
-    <section class="south-testimonials-area section-padding-100">
+    {{-- <section class="south-testimonials-area section-padding-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -736,11 +582,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Testimonials Area End ##### -->
 
     <!-- ##### Editor Area Start ##### -->
-    <section class="south-editor-area d-flex align-items-center">
+    {{-- <section class="south-editor-area d-flex align-items-center">
         <!-- Editor Content -->
         <div class="editor-content-area">
             <!-- Section Heading -->
@@ -763,119 +609,17 @@
         <div class="editor-thumbnail">
             <img src="img/bg-img/editor.jpg" alt="">
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Editor Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area section-padding-100-0 bg-img gradient-background-overlay" style="background-image: url(img/bg-img/cta.jpg);">
-        <!-- Main Footer Area -->
-        <div class="main-footer-area">
-            <div class="container">
-                <div class="row">
-
-                    <!-- Single Footer Widget -->
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="footer-widget-area mb-100">
-                            <!-- Widget Title -->
-                            <div class="widget-title">
-                                <h6>About Us</h6>
-                            </div>
-
-                            <img src="img/bg-img/footer.jpg" alt="">
-                            <div class="footer-logo my-4">
-                                <img src="img/core-img/logo.png" alt="">
-                            </div>
-                            <p>Integer nec bibendum lacus. Suspen disse dictum enim sit amet libero males uada feugiat. Praesent malesuada.</p>
-                        </div>
-                    </div>
-
-                    <!-- Single Footer Widget -->
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="footer-widget-area mb-100">
-                            <!-- Widget Title -->
-                            <div class="widget-title">
-                                <h6>Hours</h6>
-                            </div>
-                            <!-- Office Hours -->
-                            <div class="weekly-office-hours">
-                                <ul>
-                                    <li class="d-flex align-items-center justify-content-between"><span>Monday - Friday</span> <span>09 AM - 19 PM</span></li>
-                                    <li class="d-flex align-items-center justify-content-between"><span>Saturday</span> <span>09 AM - 14 PM</span></li>
-                                    <li class="d-flex align-items-center justify-content-between"><span>Sunday</span> <span>Closed</span></li>
-                                </ul>
-                            </div>
-                            <!-- Address -->
-                            <div class="address">
-                                <h6><img src="img/icons/phone-call.png" alt=""> +45 677 8993000 223</h6>
-                                <h6><img src="img/icons/envelope.png" alt=""> office@template.com</h6>
-                                <h6><img src="img/icons/location.png" alt=""> Main Str. no 45-46, b3, 56832, Los Angeles, CA</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Footer Widget -->
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="footer-widget-area mb-100">
-                            <!-- Widget Title -->
-                            <div class="widget-title">
-                                <h6>Useful Links</h6>
-                            </div>
-                            <!-- Nav -->
-                            <ul class="useful-links-nav d-flex align-items-center">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Properties</a></li>
-                                <li><a href="#">Listings</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Properties</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Testimonials</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Elements</a></li>
-                                <li><a href="#">FAQ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Single Footer Widget -->
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="footer-widget-area mb-100">
-                            <!-- Widget Title -->
-                            <div class="widget-title">
-                                <h6>Featured Properties</h6>
-                            </div>
-                            <!-- Featured Properties Slides -->
-                            <div class="featured-properties-slides owl-carousel">
-                                <!-- Single Slide -->
-                                <div class="single-featured-properties-slide">
-                                    <a href="#"><img src="img/bg-img/fea-product.jpg" alt=""></a>
-                                </div>
-                                <!-- Single Slide -->
-                                <div class="single-featured-properties-slide">
-                                    <a href="#"><img src="img/bg-img/fea-product.jpg" alt=""></a>
-                                </div>
-                                <!-- Single Slide -->
-                                <div class="single-featured-properties-slide">
-                                    <a href="#"><img src="img/bg-img/fea-product.jpg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Copywrite Text -->
-        <div class="copywrite-text d-flex align-items-center justify-content-center">
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        </div>
-    </footer>
+    @include('frontend.master.footer')
     <!-- ##### Footer Area End ##### -->
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>

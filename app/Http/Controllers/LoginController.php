@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     function showFormLogin() {
-        return view('layouts.login');
+        return view('frontend.pages.login');
     }
 
     function showFormRegister() {
-        return view('layouts.register');
+        return view('frontend.pages.register');
     }
 
-    
+
+
+
+
 }

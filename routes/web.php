@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/login', '\App\Http\Controllers\LoginController@showFormLogin')->name('login');
+Route::get('/login', '\App\Http\Controllers\LoginController@showFormLogin')->name('login.show');
+Route::post('/login', '\App\Http\Controllers\LoginController@login')->name('login.login');
 Route::get('/register', '\App\Http\Controllers\LoginController@showFormRegister');
 Route::post('/register', '\App\Http\Controllers\LoginController@register')->name('register');
 

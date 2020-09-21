@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 class LoginController extends Controller
 {
@@ -13,6 +16,24 @@ class LoginController extends Controller
 
     function showFormRegister() {
         return view('frontend.pages.register');
+    }
+
+
+    function login(Request $request) {
+        $email = $request->email;
+        $password =md5($request->password);
+
+        $user = User::where([
+            ['email', '=', $email],
+            ['password', '=', $password],
+        ])->first();
+        if ($user) {
+            Session::put('user', $user);
+            dd($request->session()->all());
+        } else {
+            Session::put('mess', 'Sai tên đăng nhập hoặc mật khẩu!');
+            return redirect()->route('login.show');
+        }
     }
 
     public function register(Request $request)
@@ -31,6 +52,6 @@ class LoginController extends Controller
             $user->image = $newFileName;
         }
         $user->save();
-        return redirect()->route('login');
+        return redirect()->route('login.show');
     }
 }

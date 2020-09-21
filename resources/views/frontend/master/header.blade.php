@@ -103,6 +103,8 @@
                                 </div>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ route('login.show') }}">Đăng kí</a></li>
+                            <li><a href="">Đăng nhập</a></li>
                         </ul>
 
                         <!-- Search Form -->

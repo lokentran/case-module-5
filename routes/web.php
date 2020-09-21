@@ -26,3 +26,5 @@ Route::post('/register', '\App\Http\Controllers\LoginController@register')->name
 
 // Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
 Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
+
+Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware(\App\Http\Middleware\CheckUser::class);

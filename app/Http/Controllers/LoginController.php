@@ -19,7 +19,7 @@ class LoginController extends Controller
     }
 
 
-    function login(Request $request) {
+    function login(LoginRequest $request) {
         $email = $request->email;
         $password =md5($request->password);
 

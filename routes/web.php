@@ -19,9 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', '\App\Http\Controllers\LoginController@showFormLogin')->name('login.show');
 Route::post('/login', '\App\Http\Controllers\LoginController@login')->name('login.login');
+Route::get('/logout', '\App\Http\Controllers\LoginController@logout')->name('login.logout');
+
 Route::get('/register', '\App\Http\Controllers\LoginController@showFormRegister');
 Route::post('/register', '\App\Http\Controllers\LoginController@register')->name('register');
 
-
-// Route::get('/', '');
-Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->middleware(\App\Http\Middleware\CheckUser::class);
+// Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);

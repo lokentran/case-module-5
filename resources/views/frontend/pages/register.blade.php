@@ -1,33 +1,56 @@
 @extends('frontend.master.master')
 @section('content')
-<div class="site-section bg-light bg-image" id="contact-section">
+<div class="site-section bg-light bg-image" id="register">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3 mb-5 mt-5">
+            <div class="col-md-6 offset-md-3">
                 <div class="form-register">
-                    <form action="" method="POST" enctype="multipart/form-data" class="p-5 bg-white">
+                    <form action="" method="POST" enctype="multipart/form-data" class="">
                         @csrf
 
                         <h2 class="text-center mb-3">Đăng Ký thành viên</h2>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="{{$errors->first('name') ? 'text-danger': ''}}">Full Name (*)
-                                </label>
+                                {{-- <label class="{{$errors->first('name') ? 'text-danger': ''}}">Full Name (*)
+                                </label> --}}
                                 <input type="text" name="name" id="name"
-                                       class="form-control {{$errors->first('name') ? 'is-invalid' : ''}}" autofocus placeholder="Ví du: Nguyễn Văn A">
+                                       class="form-control {{$errors->first('name') ? 'is-invalid' : ''}}" autofocus placeholder="Họ và tên (*)">
                             </div>
 
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="{{$errors->first('email') ? 'text-danger': ''}}">Email (*)
-                                </label>
+                                {{-- <label class="{{$errors->first('email') ? 'text-danger': ''}}">Email (*)
+                                </label> --}}
                                 <input type="email" id="email" name="email"
                                        class="form-control {{$errors->first('email') ? 'is-invalid' : ''}}"
-                                       value="{{old('email')}}" autofocus placeholder="Ví du: abc@gmail.c">
+                                       value="{{old('email')}}" autofocus placeholder="Email(*), ví dụ: abc@gmail.com">
                             </div>
 
                         </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                {{-- <label class="{{$errors->first('password') ? 'text-danger': ''}}">Mật Khẩu (*)
+                                </label> --}}
+                                <input type="password" name="password" id="password"
+                                       class="form-control {{$errors->first('password') ? 'is-invalid' : ''}}" autofocus placeholder="Mật khẩu(*) gồm chữ và số">
+
+                            </div>
+
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                {{-- <label class="{{$errors->first('phone') ? 'text-danger': ''}}">Số Điện Thoại (*)
+                                </label> --}}
+                                <input type="text" name="phone" id="text"
+                                        class="form-control {{$errors->first('phone') ? 'is-invalid' : ''}}" autofocus placeholder="Số điện thoại(*)Ví dụ: xxx.xxxx.xxx">
+
+                            </div>
+
+                        </div>
+
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="">Ảnh chân dung</label>
@@ -39,26 +62,8 @@
 
                             </div>
                         </div>
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label class="{{$errors->first('password') ? 'text-danger': ''}}">Mật Khẩu (*)
-                                </label>
-                                <input type="password" name="password" id="password"
-                                       class="form-control {{$errors->first('password') ? 'is-invalid' : ''}}" autofocus placeholder="Mật khẩu gồm chữ và số">
 
-                            </div>
 
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label class="{{$errors->first('phone') ? 'text-danger': ''}}">Số Điện Thoại (*)
-                                </label>
-                                <input type="text" name="phone" id="text"
-                                       class="form-control {{$errors->first('phone') ? 'is-invalid' : ''}}" autofocus placeholder="Ví dụ: xxx.xxxx.xxx">
-
-                            </div>
-
-                        </div>
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="text-black">Bạn muốn:</label>
@@ -70,8 +75,8 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <label class="{{$errors->first('address') ? 'text-danger': ''}}">Địa Chỉ</label>
-                                <textarea name="address" id="message" cols="30" rows="5"
+                                {{-- <label class="{{$errors->first('address') ? 'text-danger': ''}}">Địa Chỉ</label> --}}
+                                <textarea name="address" id="message" cols="30" rows="3" placeholder="Địa chỉ"
                                           class="form-control {{$errors->first('address') ? 'is-invalid' : ''}}"></textarea>
                             </div>
 
@@ -81,7 +86,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                <input type="submit" value="Đăng ký" class="btn btn-primary btn-md text-white">
+                                <button type="submit" class="btn btn-primary btn-md text-white">Đăng ký</button>
                                 <button class="btn btn-secondary" onclick="window.history.go(-1); return false">Cancel</button>
                             </div>
                         </div>

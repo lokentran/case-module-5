@@ -103,8 +103,36 @@
                                 </div>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
-                            <li><a href="{{ route('login.show') }}">Đăng kí</a></li>
-                            <li><a href="">Đăng nhập</a></li>
+                            <li>
+                                <a href="{{ route('login.show') }}">
+                                    @if (\Illuminate\Support\Facades\Session::get('user'))
+                                        {{ Session::get('user')->email }}
+                                    @else
+                                        Đăng nhập
+                                    @endif
+                                </a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ route('login.logout') }}">Đăng xuất</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="#">Listings</a>
+                                        <ul class="dropdown">
+                                            <li><a href="listings.html">Listings</a></li>
+                                            <li><a href="single-listings.html">Single Listings</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Blog</a>
+                                        <ul class="dropdown">
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="single-blog.html">Single Blog</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="elements.html">Elements</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{{ route('register') }}">Đăng kí</a>
+                            </li>
                         </ul>
 
                         <!-- Search Form -->

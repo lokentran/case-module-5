@@ -16,11 +16,11 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(true) {
+        if(\Illuminate\Support\Facades\Session::get('user')) {
             return $next($request);
         }
 
-        return redirect()->route('login');
+        return redirect()->route('login.show');
 
     }
 }

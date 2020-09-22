@@ -17,8 +17,14 @@
     align-items: center;
 }
 
+.form-register {
+    margin-top: 160px;
+    margin-bottom: 50px;
+}
+
 #register {
     min-height: 1100px;
+    height: auto;
 }
 
 .add-house {

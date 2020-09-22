@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Session;
 
 
@@ -43,7 +44,7 @@ class LoginController extends Controller
         return \redirect()->route('login.show');
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
@@ -65,3 +66,5 @@ class LoginController extends Controller
         return redirect()->route('index');
     }
 }
+
+

@@ -9,44 +9,66 @@
                         @csrf
 
                         <h2 class="text-center mb-3">Đăng Ký thành viên</h2>
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Bạn cần điền đúng và đủ thông tin theo lời nhắc thông báo lỗi</strong>
+                        </div>
+                         @endif
+
                         <div class="row form-group">
                             <div class="col-md-12">
-                                {{-- <label class="{{$errors->first('name') ? 'text-danger': ''}}">Full Name (*)
-                                </label> --}}
+
                                 <input type="text" name="name" id="name"
-                                       class="form-control {{$errors->first('name') ? 'is-invalid' : ''}}" autofocus placeholder="Họ và tên (*)">
+                                       class="form-control " autofocus placeholder="Họ và tên (*)" value="{{old('name')}}">
+                                @if ($errors->has('name'))
+                                    <div class="alert alert-danger">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </div>
+                                @endif
                             </div>
+
+
 
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                {{-- <label class="{{$errors->first('email') ? 'text-danger': ''}}">Email (*)
-                                </label> --}}
-                                <input type="email" id="email" name="email"
-                                       class="form-control {{$errors->first('email') ? 'is-invalid' : ''}}"
+
+                                <input type="name" id="email" name="email"
+                                       class="form-control"
                                        value="{{old('email')}}" autofocus placeholder="Email(*), ví dụ: abc@gmail.com">
+                                @if ($errors->has('email'))
+                                    <div class="alert alert-danger">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </div>
+                                @endif
                             </div>
 
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                {{-- <label class="{{$errors->first('password') ? 'text-danger': ''}}">Mật Khẩu (*)
-                                </label> --}}
+
                                 <input type="password" name="password" id="password"
-                                       class="form-control {{$errors->first('password') ? 'is-invalid' : ''}}" autofocus placeholder="Mật khẩu(*) gồm chữ và số">
-
+                                       class="form-control " autofocus placeholder="Mật khẩu(*)" value="">
+                                @if ($errors->has('password'))
+                                    <div class="alert alert-danger">
+                                           <strong>{{ $errors->first('password') }}</strong>
+                                    </div>
+                                @endif
                             </div>
 
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-12">
-                                {{-- <label class="{{$errors->first('phone') ? 'text-danger': ''}}">Số Điện Thoại (*)
-                                </label> --}}
-                                <input type="text" name="phone" id="text"
-                                        class="form-control {{$errors->first('phone') ? 'is-invalid' : ''}}" autofocus placeholder="Số điện thoại(*)Ví dụ: xxx.xxxx.xxx">
 
+                                <input type="text" name="phone" id="text"
+                                        class="form-control " autofocus placeholder="Số điện thoại(*)Ví dụ: xxx.xxxx.xxx" value="{{old('phone')}}">
+                                @if ($errors->has('phone'))
+                                    <div class="alert alert-danger">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </div>
+                                @endif
                             </div>
 
                         </div>
@@ -75,9 +97,14 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-md-12">
-                                {{-- <label class="{{$errors->first('address') ? 'text-danger': ''}}">Địa Chỉ</label> --}}
+
                                 <textarea name="address" id="message" cols="30" rows="3" placeholder="Địa chỉ"
-                                          class="form-control {{$errors->first('address') ? 'is-invalid' : ''}}"></textarea>
+                                          class="form-control " value="{{old('address')}}"></textarea>
+                                @if ($errors->has('address'))
+                                    <div class="alert alert-danger">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </div>
+                                @endif
                             </div>
 
                         </div>

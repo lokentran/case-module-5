@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\House;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
+
 
 class HouseController extends Controller
 {
@@ -52,17 +52,6 @@ class HouseController extends Controller
         return redirect()->route('house.confirm', $request->user_id);
     }
 
-    public function confirmIndex() {
-        $subDay = \Carbon\Carbon::parse( Session::get('userRent')['checkIn'])->diffInDays( Session::get('userRent')['checkOut'] );
-        $house = \App\Models\House::findOrFail(Session::get('userRent')['house_id']);
-        $totalPrice = $subDay * $house->price;
-        return view('frontend.pages.confirm', compact('house', 'totalPrice'));
-    }
 
-    public function confirmPost() {
-        $start_date = Session::get('userRent')['checkIn'];
-        $end_date = Session::get('userRent')['checkOut'];
-        $totalDay = \Carbon\Carbon::parse( Session::get('userRent')['checkIn'])->diffInDays( Session::get('userRent')['checkOut'] );
-    }
 
 }

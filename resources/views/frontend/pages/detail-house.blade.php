@@ -34,7 +34,7 @@
                 <div class="listings-content">
                     <!-- Price -->
                     <div class="list-price">
-                        <p>{{ $house->price }} VNĐ</p>
+                        <p>{{ number_format($house->price,0,",",".") }} VNĐ/Ngày</p>
                     </div>
                     <h5>{{ $house->name }}</h5>
                     <p class="location"><img src="img/icons/location.png" alt="">{{ $house->address }}</p>
@@ -82,8 +82,8 @@
                 <div class="rent-house mt-5">
                     <form action="" method="POST">
                         @csrf
-                        <input type="text" name="house_id" value="{{ $house->id }}" >
-                        <input type="text" name="user_id"
+                        <input hidden type="text" name="house_id" value="{{ $house->id }}" >
+                        <input hidden type="text" name="user_id"
                             value="@if (isset(Session::get('user')->id))
                             {{ Session::get('user')->id }}
                             @endif" >

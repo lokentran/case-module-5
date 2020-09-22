@@ -1,5 +1,5 @@
 .form-login, .form-register, .box-add-house {
-    background: #fffffff5;
+    background: #ffffffd4;
     padding: 30px 15px 50px;
     border-radius: 10px;
     position: relative;
@@ -69,4 +69,14 @@ body input:-webkit-autofill:focus {
 
 input.totalPrice {
     border: none;
+    font-weight: bold;
+}
+
+.btn-login, .btn-register {
+    background: #9494949e;
+    border-radius: 20px;
+}
+
+.btn-register {
+    background: #81e65859;
 }

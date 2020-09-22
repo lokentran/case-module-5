@@ -7,7 +7,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="breadcumb-content">
-                    <h3 class="breadcumb-title">Xác nhận</h3>
+                    <h3 class="breadcumb-title">Xác nhận đặt phòng</h3>
                 </div>
             </div>
         </div>
@@ -27,11 +27,11 @@
                                         <!-- Price -->
                                         <img src="{{ asset('/storage/'.$house->image) }}" alt="">
                                         <div class="list-price">
-                                            <p>{{ $house->price }} VNĐ</p>
+                                            <p>{{ number_format($house->price,0,",",".") }} VNĐ/Ngày</p>
                                         </div>
                                         <h5>{{ $house->name }}</h5>
                                         <p class="location"><img src="img/icons/location.png" alt="">{{ $house->address }}</p>
-                                        <p>{{ $house->description }}</p>
+                                        {{-- <p>{{ $house->description }}</p> --}}
                                         <!-- Meta -->
                                         <div class="property-meta-data d-flex align-items-end">
                                             <div class="new-tag">
@@ -61,8 +61,8 @@
                                         <h5>Xác nhận</h5>
                                         <form action="" method="POST">
                                             @csrf
-                                            <input type="text" name="house_id" value="{{ $house->id }}" >
-                                            <input type="text" name="user_id"
+                                            <input hidden type="text" name="house_id" value="{{ $house->id }}" >
+                                            <input hidden type="text" name="user_id"
                                                 value="@if (isset(Session::get('user')->id))
                                                 {{ Session::get('user')->id }}
                                                 @endif" >
@@ -79,8 +79,8 @@
                                             {{-- {{ \Carbon\Carbon::parse( Session::get('userRent')['checkIn'])->diffInDays( Session::get('userRent')['checkOut'] ) }} --}}
 
                                             <div class="form-group">
-                                                <label for="">Tổng số tiền(VNĐ):</label>
-                                                <input class="totalPrice" type="number" readonly value="{{ $totalPrice }}" name="totalPrice">
+                                                <label for=""><b>Tổng số tiền: {{ number_format($totalPrice,0,",",".") }} VNĐ</b></label>
+                                                <input hidden class="totalPrice" type="text" readonly value="{{ number_format($totalPrice,0,",",".") }}" name="totalPrice">
                                             </div>
 
                                             <button class="btn btn-success" type="submit"
@@ -102,10 +102,7 @@
         </div>
     </div>
 </div>
-<form action="">
 
-
-</form>
 
 
 @endsection

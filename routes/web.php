@@ -1,4 +1,5 @@
 <?php
+namespace App;
 
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::post('/add-house', '\App\Http\Controllers\HouseController@postHouse')->na
 Route::get('/house/detail/{id}', '\App\Http\Controllers\HouseController@detail')->name('house.detail');
 Route::post('/house/detail/{id}', '\App\Http\Controllers\HouseController@rentHome')->name('house.rent')->middleware(\App\Http\Middleware\CheckUser::class);
 
-Route::get('/house/detail/{id}/confirm', '\App\Http\Controllers\HouseController@confirmIndex')->name('house.confirm')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/house/detail/{id}/confirm', '\App\Http\Controllers\BillController@confirmIndex')->name('house.confirm')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::post('/house/detail/{id}/confirm', '\App\Http\Controllers\BillController@confirmPost')->name('house.confirmPost')->middleware(\App\Http\Middleware\CheckUser::class);
 
-
+Route::get('/success', '\App\Http\Controllers\BillController@success')->name('bill.success');

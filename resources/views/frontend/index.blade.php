@@ -253,7 +253,7 @@
                                         <span>For Sale</span>
                                     </div>
                                     <div class="list-price">
-                                        <p>{{ $house->price }}</p>
+                                        <p>{{ number_format($house->price,0,",",".") }} VNĐ/Ngày</p>
                                     </div>
                                 </div>
                                 <!-- Property Content -->

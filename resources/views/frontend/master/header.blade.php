@@ -24,7 +24,7 @@
             <nav class="classy-navbar justify-content-between" id="southNav">
 
                 <!-- Logo -->
-                <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                <a class="nav-brand" href="{{ route('index') }}"><img src="img/core-img/logo.png" alt=""></a>
 
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
@@ -42,7 +42,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('index') }}">Trang chủ</a></li>
                             {{-- <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">Home</a></li>
@@ -63,7 +63,7 @@
                                     <li><a href="elements.html">Elements</a></li>
                                 </ul>
                             </li> --}}
-                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="about-us.html">Giới thiệu</a></li>
                             {{-- <li><a href="listings.html">Properties</a></li>
                             <li><a href="blog.html">Blog</a></li> --}}
                             <li><a href="#">Mega Menu</a>
@@ -102,9 +102,9 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contact.html">Liên hệ</a></li>
                             <li>
-                                <a
+                                <a class="btn-login"
                                 @if (\Illuminate\Support\Facades\Session::get('user'))
 
                                 @else
@@ -132,7 +132,7 @@
                                 @if (\Illuminate\Support\Facades\Session::get('user'))
 
                                 @else
-                                    <a href="{{ route('register') }}">Đăng kí
+                                    <a class="btn-register" href="{{ route('register') }}">Đăng kí
                                     </a>
                                 @endif
 

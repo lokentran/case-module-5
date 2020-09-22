@@ -25,6 +25,14 @@ Route::get('/register', '\App\Http\Controllers\LoginController@showFormRegister'
 Route::post('/register', '\App\Http\Controllers\LoginController@register')->name('register');
 
 // Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
-Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index');
 
 Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::post('/add-house', '\App\Http\Controllers\HouseController@postHouse')->name('house.addForm')->middleware(\App\Http\Middleware\CheckUser::class);
+
+Route::get('/house/detail/{id}', '\App\Http\Controllers\HouseController@detail')->name('house.detail');
+Route::post('/house/detail/{id}', '\App\Http\Controllers\HouseController@rentHome')->name('house.rent')->middleware(\App\Http\Middleware\CheckUser::class);
+
+Route::get('/house/detail/{id}/confirm', '\App\Http\Controllers\HouseController@confirmIndex')->name('house.confirm')->middleware(\App\Http\Middleware\CheckUser::class);
+
+

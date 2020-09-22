@@ -1,5 +1,5 @@
 .form-login, .form-register, .box-add-house {
-    background: #ffffffdb;
+    background: #fffffff5;
     padding: 30px 15px 50px;
     border-radius: 10px;
     position: relative;
@@ -22,10 +22,12 @@
 }
 
 .add-house {
-    min-height: 1400px;
+    min-height: 1500px;
 }
 
-div#login::after {
+div#login::after,
+div#register::after,
+div.add-house::after {
     position: absolute;
     content: '';
     left: 0;
@@ -59,4 +61,12 @@ body input:-webkit-autofill:focus {
 
 .breakpoint-off .classynav ul li .dropdown {
     width: 220px;
+}
+
+.confirm-box .listings-content {
+    margin-top: 0;
+}
+
+input.totalPrice {
+    border: none;
 }

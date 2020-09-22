@@ -43,7 +43,7 @@
                     <div class="classynav">
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="#">Pages</a>
+                            {{-- <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">Home</a></li>
                                     <li><a href="about-us.html">About Us</a></li>
@@ -62,10 +62,10 @@
                                     <li><a href="contact.html">Contact</a></li>
                                     <li><a href="elements.html">Elements</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                             <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="listings.html">Properties</a></li>
-                            <li><a href="blog.html">Blog</a></li>
+                            {{-- <li><a href="listings.html">Properties</a></li>
+                            <li><a href="blog.html">Blog</a></li> --}}
                             <li><a href="#">Mega Menu</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
@@ -106,7 +106,7 @@
                             <li>
                                 <a
                                 @if (\Illuminate\Support\Facades\Session::get('user'))
-                               
+
                                 @else
                                      href="{{ route('login.show') }}"
                                 @endif
@@ -129,7 +129,13 @@
                                 @endif
                             </li>
                             <li>
-                                <a href="{{ route('register') }}">Đăng kí</a>
+                                @if (\Illuminate\Support\Facades\Session::get('user'))
+
+                                @else
+                                    <a href="{{ route('register') }}">Đăng kí
+                                    </a>
+                                @endif
+
                             </li>
                         </ul>
 

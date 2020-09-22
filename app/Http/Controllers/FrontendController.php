@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Session;
 class FrontendController extends Controller
 {
     function showIndex(Request $request) {
-
-        if($request->session()->has('user')) {
-            print_r(Session::get('user')->all);
-        }
-
-        return view('frontend.index');
+        $houses = \App\Models\House::all();
+        return view('frontend.index', compact('houses'));
     }
 }

@@ -49,7 +49,7 @@ class HouseController extends Controller
 
         Session::put('userRent', $userRent);
         // var_dump(Session::get('userRent'));
-        return redirect()->route('house.confirm', $request->user_id);
+        return redirect()->route('house.confirm', $request->house_id);
     }
 
 

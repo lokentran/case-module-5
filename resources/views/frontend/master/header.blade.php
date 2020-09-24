@@ -120,7 +120,8 @@
                                 @if (\Illuminate\Support\Facades\Session::get('user'))
                                 <ul class="dropdown">
                                     <li><a href="{{ route('login.logout') }}">Đăng xuất</a></li>
-                                        @if (Session::get('user')->role == 2)
+                                    <li><a href="{{ route('profile.show', Session::get('user')->id ) }}">Thông tin của bạn</a></li>
+                                        @if (Session::get('user')->role == 1)
                                             <li>
                                                 <a href="{{ route('house.add') }}">Đăng nhà cho thuê</a>
                                             </li>

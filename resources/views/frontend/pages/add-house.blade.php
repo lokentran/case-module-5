@@ -48,15 +48,20 @@
 
                             <div class="form-group">
                                 <label class="">Số phòng ngủ:</label>
-
-                                <input type="number" name="bedroom" autofocus
-                                       class="form-control">
+                                <select class="form-control " name="bedroom">
+                                    <option value="1">1 Phòng</option>
+                                    <option value="2">2 Phòng</option>
+                                    <option value="3">3 Phòng</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="">Số phòng tắm:</label>
-                                <input type="number" name="bathroom" autofocus
-                                       class="form-control">
+                                <select class="form-control " name="bathroom">
+                                    <option value="1">1 Phòng</option>
+                                    <option value="2">2 Phòng</option>
+                                    <option value="3">3 Phòng</option>
+                                </select>
                             </div>
 
 

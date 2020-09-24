@@ -59,6 +59,9 @@
                                 <div class="col-md-6">
                                     <div class="rent-house">
                                         <h5>Xác nhận</h5>
+
+                                        <p>Người đặt phòng: {{ Session::get('user')->name }}</p>
+
                                         <form action="" method="POST">
                                             @csrf
                                             <input hidden type="text" name="house_id" value="{{ $house->id }}" >
@@ -70,19 +73,38 @@
                                             <div class="form-group">
                                                 <label for="">Ngày đặt phòng</label>
                                                 <input class="form-control" type="date" name="checkIn" value="{{ Session::get('userRent')['checkIn'] }}">
+                                                @if ($errors->has('checkIn'))
+                                                <div class="alert alert-danger">
+                                                    <strong>{{ $errors->first('checkIn') }}</strong>
+                                                </div>
+                                                @endif
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Ngày trả phòng</label>
                                                 <input class="form-control" type="date" name="checkOut" value="{{ Session::get('userRent')['checkOut'] }}">
+                                                @if ($errors->has('checkOut'))
+                                                <div class="alert alert-danger">
+                                                    <strong>{{ $errors->first('checkOut') }}</strong>
+                                                </div>
+                                                @endif
                                             </div>
 
                                             {{-- {{ \Carbon\Carbon::parse( Session::get('userRent')['checkIn'])->diffInDays( Session::get('userRent')['checkOut'] ) }} --}}
 
                                             <div class="form-group">
-                                                <label for=""><b>Tổng số tiền: {{ number_format($totalPrice,0,",",".") }} VNĐ</b></label>
+                                                <label for=""><b>Tổng số tiền: {{ number_format($totalPrice,0,",",".") }} VNĐ ({{ $subDay }} ngày)</b></label>
                                                 <input hidden class="totalPrice" type="text" readonly value="{{ number_format($totalPrice,0,",",".") }}" name="totalPrice">
                                             </div>
 
+                                            <div class="form-group">
+                                                <div class="realtor---info">
+                                                    <h5>Chủ nhà: {{ $house->user->name }}</h5>
+                                                    <h6><img src="img/icons/phone-call.png" alt="">{{ $house->user->phone }}</h6>
+                                                    <h6><img src="img/icons/envelope.png" alt="">{{ $house->user->email }}</h6>
+                                                </div>
+                                            </div>
+
+                                            <button disabled class="btn btn-secondary">Cập nhật</button>
                                             <button class="btn btn-success" type="submit"
                                                 @if (isset(Session::get('user')->id))
 

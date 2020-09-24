@@ -56,6 +56,19 @@
                                     </div>
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                       class="form-control " autofocus placeholder="Xác nhận mật khẩu(*)" value="">
+                                @if ($errors->has('password'))
+                                    <div class="alert alert-danger">
+                                           <strong>{{ $errors->first('password') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
 
                         </div>
 
@@ -90,7 +103,7 @@
                             <div class="col-md-12">
                                 <label class="text-black">Bạn muốn:</label>
                                 <br>
-                                <input type="radio" name="role" value="1"> Cho thuê / Bán
+                                <input type="radio" name="role" value="1"> Cho thuê
                                 <br>
                                 <input type="radio" name="role" value="2"> Thuê nhà
                             </div>
@@ -99,7 +112,7 @@
                             <div class="col-md-12">
 
                                 <textarea name="address" id="message" cols="30" rows="3" placeholder="Địa chỉ"
-                                          class="form-control " value="{{old('address')}}"></textarea>
+                                          class="form-control " value="">{{old('address')}}</textarea>
                                 @if ($errors->has('address'))
                                     <div class="alert alert-danger">
                                         <strong>{{ $errors->first('address') }}</strong>

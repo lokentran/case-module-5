@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\Session;
 class BillController extends Controller
 {
     public function confirmIndex() {
+        // if(isset(Session::get('userRent')['checkIn'])) {
+
+        // }
         $subDay = \Carbon\Carbon::parse( Session::get('userRent')['checkIn'])->diffInDays( Session::get('userRent')['checkOut'] );
         $house = \App\Models\House::findOrFail(Session::get('userRent')['house_id']);
         $totalPrice = $subDay * $house->price;
-        return view('frontend.pages.confirm', compact('house', 'totalPrice'));
+        return view('frontend.pages.confirm', compact('house', 'totalPrice', 'subDay'));
     }
 
-    public function confirmPost(Request $request) {
+    public function confirmPost(\App\Http\Requests\ConfirmRequest $request) {
         $bill = new Bill();
         $bill->totalPrice = $request->totalPrice;
         $bill->checkIn = $request->checkIn;
@@ -27,6 +30,7 @@ class BillController extends Controller
 
         // dd($request->all());
         $bill->save();
+        $request->session()->forget('userRent');
         return redirect()->route('bill.success');
     }
 

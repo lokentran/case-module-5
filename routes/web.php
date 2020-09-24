@@ -18,12 +18,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/login', '\App\Http\Controllers\LoginController@showFormLogin')->name('login.show');
-Route::post('/login', '\App\Http\Controllers\LoginController@login')->name('login.login');
-Route::get('/logout', '\App\Http\Controllers\LoginController@logout')->name('login.logout');
+Route::get('/login', '\App\Http\Controllers\UserController@showFormLogin')->name('login.show');
+Route::post('/login', '\App\Http\Controllers\UserController@login')->name('login.login');
+Route::get('/logout', '\App\Http\Controllers\UserController@logout')->name('login.logout');
 
-Route::get('/register', '\App\Http\Controllers\LoginController@showFormRegister');
-Route::post('/register', '\App\Http\Controllers\LoginController@register')->name('register');
+Route::get('/register', '\App\Http\Controllers\UserController@showFormRegister');
+Route::post('/register', '\App\Http\Controllers\UserController@register')->name('register');
+
+Route::get('/user/{id}/profile', '\App\Http\Controllers\UserController@showProfile')->name('profile.show');
+Route::post('/user/{id}/profile', '\App\Http\Controllers\UserController@updateProfile')->name('profile.update');
+
 
 // Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
 Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index');
@@ -31,10 +35,10 @@ Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('ind
 Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware(\App\Http\Middleware\CheckUser::class);
 Route::post('/add-house', '\App\Http\Controllers\HouseController@postHouse')->name('house.addForm')->middleware(\App\Http\Middleware\CheckUser::class);
 
-Route::get('/house/detail/{id}', '\App\Http\Controllers\HouseController@detail')->name('house.detail');
-Route::post('/house/detail/{id}', '\App\Http\Controllers\HouseController@rentHome')->name('house.rent')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/house/{id}/detail', '\App\Http\Controllers\HouseController@detail')->name('house.detail');
+Route::post('/house/{id}/detail/', '\App\Http\Controllers\HouseController@rentHome')->name('house.rent')->middleware(\App\Http\Middleware\CheckUser::class);
 
-Route::get('/house/detail/{id}/confirm', '\App\Http\Controllers\BillController@confirmIndex')->name('house.confirm')->middleware(\App\Http\Middleware\CheckUser::class);
-Route::post('/house/detail/{id}/confirm', '\App\Http\Controllers\BillController@confirmPost')->name('house.confirmPost')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/house/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmIndex')->name('house.confirm')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::post('/house/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmPost')->name('house.confirmPost')->middleware(\App\Http\Middleware\CheckUser::class);
 
 Route::get('/success', '\App\Http\Controllers\BillController@success')->name('bill.success');

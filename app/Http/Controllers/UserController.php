@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Session;
 
-
-class LoginController extends Controller
+class UserController extends Controller
 {
     function showFormLogin() {
         return view('frontend.pages.login');
@@ -65,6 +62,24 @@ class LoginController extends Controller
 
         return redirect()->route('index');
     }
+    public function showProfile($id) {
+        $user = User::findOrFail($id);
+        return view('frontend.user.user-profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $user->fill($request->all());
+        if ($request->hasFile('avatar')) {
+            $cover = $request->file('avatar');
+            $newFileName = time() . "_" . rand(0, 9999999) . "_" . md5(rand(0, 9999999)) . "." . $cover->getClientOriginalExtension();
+            $cover->storeAs('public/images', $newFileName);
+            $user->image = $newFileName;
+        }
+
+        // dd($request->all());
+        $user->save();
+        return redirect()->route('profile.show', $id);
+    }
+
 }
-
-

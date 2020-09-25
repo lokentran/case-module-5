@@ -66,7 +66,7 @@
                             <li><a href="about-us.html">Giới thiệu</a></li>
                             {{-- <li><a href="listings.html">Properties</a></li>
                             <li><a href="blog.html">Blog</a></li> --}}
-                            <li><a href="#">Mega Menu</a>
+                            {{-- <li><a href="#">Mega Menu</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Headline 1</li>
@@ -101,27 +101,27 @@
                                         <li><a href="#">Mega Menu Item 5</a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> --}}
                             <li><a href="contact.html">Liên hệ</a></li>
                             <li>
                                 <a class="btn-login"
-                                @if (\Illuminate\Support\Facades\Session::get('user'))
+                                @if (\Illuminate\Support\Facades\Auth::user())
 
                                 @else
                                      href="{{ route('login.show') }}"
                                 @endif
                                 >
-                                    @if (\Illuminate\Support\Facades\Session::get('user'))
-                                        {{ Session::get('user')->email }}
+                                    @if (\Illuminate\Support\Facades\Auth::check())
+                                        {{ \Illuminate\Support\Facades\Auth::user()->email }}
                                     @else
                                         Đăng nhập
                                     @endif
                                 </a>
-                                @if (\Illuminate\Support\Facades\Session::get('user'))
+                                @if (\Illuminate\Support\Facades\Auth::user())
                                 <ul class="dropdown">
                                     <li><a href="{{ route('login.logout') }}">Đăng xuất</a></li>
-                                    <li><a href="{{ route('profile.show', Session::get('user')->id ) }}">Thông tin của bạn</a></li>
-                                        @if (Session::get('user')->role == 1)
+                                    <li><a href="{{ route('profile.show', \Illuminate\Support\Facades\Auth::user()->id) }}">Thông tin của bạn</a></li>
+                                        @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
                                             <li>
                                                 <a href="{{ route('house.add') }}">Đăng nhà cho thuê</a>
                                             </li>
@@ -130,7 +130,7 @@
                                 @endif
                             </li>
                             <li>
-                                @if (\Illuminate\Support\Facades\Session::get('user'))
+                                @if (\Illuminate\Support\Facades\Auth::check())
 
                                 @else
                                     <a class="btn-register" href="{{ route('register') }}">Đăng kí

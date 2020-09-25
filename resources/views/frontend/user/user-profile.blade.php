@@ -34,6 +34,9 @@
                                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                                 aria-controls="profile" aria-selected="false">Thay đổi thông tin</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"  href="{{ route('user.showPass', $user->id) }}">Thay đổi password</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

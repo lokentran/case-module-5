@@ -71,7 +71,7 @@
                                 <textarea class="form-control" name="description" id="" cols="30" rows="3"></textarea>
                             </div>
 
-                            <input hidden type="text" name="user_id" value="{{ Session::get('user')->id }}">
+                            <input  type="text" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
 
 
                             <div class="form-group">

@@ -28,17 +28,20 @@ Route::post('/register', '\App\Http\Controllers\UserController@register')->name(
 Route::get('/user/{id}/profile', '\App\Http\Controllers\UserController@showProfile')->name('profile.show');
 Route::post('/user/{id}/profile', '\App\Http\Controllers\UserController@updateProfile')->name('profile.update');
 
+Route::get('/user/{id}/change-pass', '\App\Http\Controllers\UserController@showFormChangePass')->name('user.showPass');
+Route::post('/user/{id}/change-pass', '\App\Http\Controllers\UserController@updatePass')->name('user.updatePass');
+
 
 // Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
 Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index');
 
-Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware(\App\Http\Middleware\CheckUser::class);
-Route::post('/add-house', '\App\Http\Controllers\HouseController@postHouse')->name('house.addForm')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware('auth');
+Route::post('/add-house', '\App\Http\Controllers\HouseController@postHouse')->name('house.addForm')->middleware('auth');
 
 Route::get('/house/{id}/detail', '\App\Http\Controllers\HouseController@detail')->name('house.detail');
-Route::post('/house/{id}/detail/', '\App\Http\Controllers\HouseController@rentHome')->name('house.rent')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::post('/house/{id}/detail/', '\App\Http\Controllers\HouseController@rentHome')->name('house.rent')->middleware('auth');
 
-Route::get('/house/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmIndex')->name('house.confirm')->middleware(\App\Http\Middleware\CheckUser::class);
-Route::post('/house/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmPost')->name('house.confirmPost')->middleware(\App\Http\Middleware\CheckUser::class);
+Route::get('/house/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmIndex')->name('house.confirm')->middleware('auth');
+Route::post('/house/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmPost')->name('house.confirmPost')->middleware('auth');
 
 Route::get('/success', '\App\Http\Controllers\BillController@success')->name('bill.success');

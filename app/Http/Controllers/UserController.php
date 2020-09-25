@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -17,36 +19,45 @@ class UserController extends Controller
     }
 
     function login(\App\Http\Requests\LoginRequest $request) {
-        $email = $request->email;
-        $password =md5($request->password);
+        // $email = $request->email;
+        // $password =md5($request->password);
+        // $user = User::where([
+        //     ['email', '=', $email],
+        //     ['password', '=', $password],
+        // ])->first();
+        // if ($user) {
+        //     Session::put('user', $user);
+        //     // echo "<pre>";
+        //     // print_r(Session::get('user')->email);
+        //     return redirect()->route('index');
+        // } else {
+        //     Session::put('mess', 'Sai tên đăng nhập hoặc mật khẩu!');
+        //     return redirect()->route('login.show');
+        // }
 
-        $user = User::where([
-            ['email', '=', $email],
-            ['password', '=', $password],
-        ])->first();
-        if ($user) {
-            Session::put('user', $user);
-            // echo "<pre>";
-            // print_r(Session::get('user')->email);
-            return redirect()->route('index');
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if (!Auth::attempt($data)) {
+            return back();
         } else {
-
-            Session::put('mess', 'Sai tên đăng nhập hoặc mật khẩu!');
-            return redirect()->route('login.show');
+            return redirect()->route('index');
         }
     }
 
-    function logout(){
-        Session::put('user', null);
+    public function logout() {
+        Auth::logout();
         return \redirect()->route('login.show');
     }
 
-    public function register(RegisterRequest $request)
+    public function register(\App\Http\Requests\RegisterRequest $request)
     {
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = md5($request->password);
+        $user->password = Hash::make($request->password);
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->role = $request->role;
@@ -58,9 +69,7 @@ class UserController extends Controller
         }
         $user->save();
 
-        Session::put('user', $user);
-
-        return redirect()->route('index');
+        return redirect()->route('login.show');
     }
     public function showProfile($id) {
         $user = User::findOrFail($id);
@@ -81,5 +90,28 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('profile.show', $id);
     }
+
+    public function showFormChangePass() {
+        return view('frontend.user.change-password');
+    }
+
+    public function  updatePass(Request $request) {
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+
+            return redirect()->back();
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+
+            return redirect()->back();
+        }
+
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
+        return redirect()->back();
+    }
+
 
 }

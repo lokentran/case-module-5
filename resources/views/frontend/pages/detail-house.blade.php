@@ -96,8 +96,8 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <input hidden type="text" name="house_id" value="{{ $house->id }}">
-                                <input hidden type="text" name="user_id" value="@if (isset(Session::get('user')->id))
-                                    {{ Session::get('user')->id }}
+                                <input hidden type="text" name="user_id" value="@if (\Illuminate\Support\Facades\Auth::check())
+                                    {{ \Illuminate\Support\Facades\Auth::user()->id }}
                                     @endif">
 
                                 <div class="form-group">
@@ -115,7 +115,7 @@
                         </div>
 
 
-                        <button class="btn btn-success" type="submit" @if (isset(Session::get('user')->id))
+                        <button class="btn btn-success" type="submit" @if (\Illuminate\Support\Facades\Auth::check())
 
                             @else
                             disabled

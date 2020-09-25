@@ -1,4 +1,4 @@
-#login, #register, .add-house, .user-profile {
+#login, #register, .add-house, .user-profile, .reset-password {
     position: relative;
     background-image: url(img/bg-img/hero3.jpg);
     height: 100vh;
@@ -9,25 +9,26 @@
 }
 
 
-.form-login, .form-register, .box-add-house, .box-profile {
+.form-login, .form-register, .box-add-house, .box-profile, .box-reset-pass {
     background: #ffffffd4;
     padding: 30px 15px 50px;
     border-radius: 10px;
     position: relative;
     z-index: 2;
-    margin-top: 90px;
+    margin-top: 140px;
 }
 
 .form-register {
-    margin-top: 160px;
     margin-bottom: 50px;
 }
 
-#register, .user-profile {
+ .user-profile {
+    height: auto;
+}
+#register {
     min-height: 1100px;
     height: auto;
 }
-
 .user-profile {
     min-height: 900px;
 }

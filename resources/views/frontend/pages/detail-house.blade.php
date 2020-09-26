@@ -31,10 +31,18 @@
 
                         <div class="col-md-6">
                             <div class="single-listings-sliders owl-carousel">
-                                <!-- Single Slide -->
+                                {{-- <!-- Single Slide -->
                                 <img src="{{ asset('/storage/'.$house->image) }}" alt="">
                                 <!-- Single Slide -->
-                                <img src="{{ asset('/storage/'.$house->image) }}" alt="">
+                                <img src="{{ asset('/storage/'.$house->image) }}" alt=""> --}}
+
+                                @foreach($house->images as $image)
+                                    <img
+                                        src="{{asset('storage/'.$image->image)}}"
+                                        class="img-fluid"
+                                    >
+                                 @endforeach
+
                             </div>
                         </div>
                         <div class="col-md-6">

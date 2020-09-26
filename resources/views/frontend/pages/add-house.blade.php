@@ -82,8 +82,7 @@
                                     (Có thể tải lên nhiều ảnh):</label>
                                 <input type="file" id="imageUpload"
                                        class="form-control selectImage {{ $errors->first('photos') ? 'is-invalid' : '' }}"
-                                       name="image"
-                                       multiple/>
+                                       name="photos[]" multiple/>
                                 @if($errors->first('photos'))
                                     <p class="text-danger">{{ $errors->first('photos') }}</p>
                                 @endif

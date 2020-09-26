@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -24,15 +25,46 @@ class HouseController extends Controller
         $house->bathroom = $request->bathroom;
         $house->user_id = $request->user_id;
         $house->description = $request->description;
-        // $house->image = $request->image;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $path = $image->store('images', 'public');
-            $house->image = $path;
+
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $path = $image->store('images', 'public');
+        //     $house->image = $path;
+        // }
+        // $house->save();
+        // // dd($request->all());
+        // return \redirect()->route('index');
+
+        if ($request->hasFile('photos')) {
+            $allowedfileExtension = ['jpg', 'png', 'jpeg'];
+            $files = $request->file('photos');
+            $exe_flg = true;
+            foreach ($files as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+                if (!$check) {
+                    $exe_flg = false;
+                    break;
+                }
+            }
+            if ($exe_flg) {
+                $house->save();
+                foreach ($request->photos as $photo) {
+                    $filename = $photo->store('images', 'public');
+                    $image = new Image();
+                    $image->image = $filename;
+                    $image->house_id = $house->id;
+                    $image->save();
+                }
+
+                return redirect()->route('index');
+            } else {
+
+                return redirect()->route('houses.list');
+            }
+
         }
-        $house->save();
-        // dd($request->all());
-        return \redirect()->route('index');
+
     }
 
     public function detail($id) {
@@ -51,7 +83,6 @@ class HouseController extends Controller
         // var_dump(Session::get('userRent'));
         return redirect()->route('house.confirm', $request->house_id);
     }
-
 
 
 }

@@ -11,10 +11,15 @@ class House extends Model
 
     protected $table = 'houses';
 
-    
-
     public function user()
     {
         return $this->belongsTo('\App\Models\User','user_id','id');
     }
+
+    public function images()
+    {
+        return $this->hasMany('\App\Models\Image', 'house_id', 'id');
+    }
+
+
 }

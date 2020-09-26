@@ -238,14 +238,25 @@
             </div>
 
             <div class="row">
+                {{-- {{ dd($houses[3]->images()->first()) }} --}}
                 @foreach ($houses as $house)
+
                         <!-- Single Featured Property -->
                         <div class="col-12 col-md-6 col-xl-4">
                             <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
                                 <!-- Property Thumbnail -->
+
+
                                 <div class="property-thumb">
                                     <a href="{{ route('house.detail', $house->id) }}">
-                                        <img src="{{ asset('/storage/'.$house->image) }}" alt="">
+
+
+                                            <img
+                                                src="{{asset('storage/'.$house->images()->first()->image)}}"
+                                                class="img-fluid"
+                                            >
+
+
                                     </a>
 
 

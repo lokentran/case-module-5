@@ -11,4 +11,7 @@ class FrontendController extends Controller
         $houses = \App\Models\House::all();
         return view('frontend.index', compact('houses'));
     }
+
+
+
 }

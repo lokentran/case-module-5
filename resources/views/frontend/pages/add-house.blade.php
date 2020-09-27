@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="mt-2" for="">Loại phòng</label>
                                 <select class="form-control " name="typeRoom">
-                                    {{-- <option value="">Loại phòng</option> --}}
+
                                     <option value="Phòng thường">Phòng thường</option>
                                     <option value="Phòng víp">Phòng víp</option>
                                 </select>
@@ -71,7 +71,7 @@
                                 <textarea class="form-control" name="description" id="" cols="30" rows="3"></textarea>
                             </div>
 
-                            <input  type="text" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
+                            <input hidden  type="text" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
 
 
                             <div class="form-group">

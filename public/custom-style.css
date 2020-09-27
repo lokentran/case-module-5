@@ -49,6 +49,11 @@ div.add-house::after {
     background-color: #00000038;
 }
 
+body .box-center {
+    display: flex;
+    justify-content: center;
+}
+
 .form-control {
     margin-bottom: 15px;
     border-radius: 5px;

@@ -31,6 +31,7 @@ Route::post('/user/{id}/profile', '\App\Http\Controllers\UserController@updatePr
 Route::get('/user/{id}/change-pass', '\App\Http\Controllers\UserController@showFormChangePass')->name('user.showPass');
 Route::post('/user/{id}/change-pass', '\App\Http\Controllers\UserController@updatePass')->name('user.updatePass');
 
+Route::post('/search', '\App\Http\Controllers\HouseController@search')->name('house.search');
 
 // Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
 Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index');

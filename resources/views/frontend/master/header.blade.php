@@ -103,29 +103,30 @@
                                 </div>
                             </li> --}}
                             <li><a href="contact.html">Liên hệ</a></li>
-                            <li>
-                                <a class="btn-login"
-                                @if (\Illuminate\Support\Facades\Auth::user())
-
-                                @else
-                                     href="{{ route('login.show') }}"
+                            @if (\Illuminate\Support\Facades\Auth::user())
+                                @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
+                                <li>
+                                    <a href="{{ route('house.add') }}">Đăng nhà cho thuê</a>
+                                </li>
                                 @endif
-                                >
+                            @endif
+
+                            <li>
+                                <a class="btn-login" @if (\Illuminate\Support\Facades\Auth::user()) @else
+                                    href="{{ route('login.show') }}" @endif>
                                     @if (\Illuminate\Support\Facades\Auth::check())
-                                        {{ \Illuminate\Support\Facades\Auth::user()->email }}
+                                    {{ \Illuminate\Support\Facades\Auth::user()->email }}
                                     @else
-                                        Đăng nhập
+                                    Đăng nhập
                                     @endif
                                 </a>
                                 @if (\Illuminate\Support\Facades\Auth::user())
                                 <ul class="dropdown">
                                     <li><a href="{{ route('login.logout') }}">Đăng xuất</a></li>
-                                    <li><a href="{{ route('profile.show', \Illuminate\Support\Facades\Auth::user()->id) }}">Thông tin của bạn</a></li>
-                                        @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
-                                            <li>
-                                                <a href="{{ route('house.add') }}">Đăng nhà cho thuê</a>
-                                            </li>
-                                        @endif
+                                    <li><a
+                                            href="{{ route('profile.show', \Illuminate\Support\Facades\Auth::user()->id) }}">Thông
+                                            tin của bạn</a></li>
+
                                 </ul>
                                 @endif
                             </li>
@@ -133,8 +134,8 @@
                                 @if (\Illuminate\Support\Facades\Auth::check())
 
                                 @else
-                                    <a class="btn-register" href="{{ route('register') }}">Đăng kí
-                                    </a>
+                                <a class="btn-register" href="{{ route('register') }}">Đăng kí
+                                </a>
                                 @endif
 
                             </li>

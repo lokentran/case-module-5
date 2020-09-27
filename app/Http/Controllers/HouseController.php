@@ -85,4 +85,56 @@ class HouseController extends Controller
     }
 
 
+    public function search(Request $request) {
+        $name = $request->name;
+        $address = $request->address;
+        $minPrice = $request->minPrice;
+        $maxPrice = $request->maxPrice;
+        $typeHouse = $request->typeHouse;
+        $typeRoom = $request->typeRoom;
+        $bathroom = $request->bathroom;
+
+        // dd($request->all());
+
+        $houses = \App\Models\House::query();
+
+        if (!empty($name)) {
+            $houses = $houses->where('name', 'LIKE', '%' . $name . '%');
+        }
+
+        if (!empty($minPrice) && !empty($maxPrice)) {
+            $houses = $houses->whereBetween('price', [$minPrice, $maxPrice]);
+        } else if(!empty($minPrice) && empty($maxPrice)) {
+            $houses = $houses->where('price', '>=' , $minPrice);
+        } else if(empty($minPrice) && !empty($maxPrice)) {
+            $houses = $houses->where('price', '<=' , $maxPrice);
+        }
+
+        if (!empty($address)) {
+            $houses = $houses->where('address', 'LIKE', '%' . $address . '%');
+        }
+
+        if (!empty($typeHouse)) {
+            $houses = $houses->where('typeHouse', 'LIKE', '%' . $typeHouse . '%');
+        }
+
+
+
+        if (!empty($bedroom)) {
+            $houses = $houses->where('bedroom', 'LIKE', '%' . $bedroom . '%');
+        }
+
+        if (!empty($bathroom)) {
+            $houses = $houses->where('bathroom', 'LIKE', '%' . $bathroom . '%');
+        }
+
+
+
+        $houses = $houses->get();
+
+        return view('frontend.index', compact('houses'));
+        // return redirect()->route('index', [$houses]);
+
+    }
+
 }

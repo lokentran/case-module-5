@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\House;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
@@ -118,8 +119,6 @@ class HouseController extends Controller
             $houses = $houses->where('typeHouse', 'LIKE', '%' . $typeHouse . '%');
         }
 
-
-
         if (!empty($bedroom)) {
             $houses = $houses->where('bedroom', 'LIKE', '%' . $bedroom . '%');
         }
@@ -128,13 +127,39 @@ class HouseController extends Controller
             $houses = $houses->where('bathroom', 'LIKE', '%' . $bathroom . '%');
         }
 
-
-
         $houses = $houses->get();
 
         return view('frontend.index', compact('houses'));
-        // return redirect()->route('index', [$houses]);
+    }
 
+    public function showListHouse($id) {
+        $user = \App\Models\User::findOrFail($id);
+        // $money = DB::table('bills')->select(DB::raw('sum(totalPrice)'))->get();
+        // $totalPriceByUser = DB::select("SELECT bills.*, users.name, sum(bills.totalPrice) as total FROM `bills`
+        // INNER JOIN houses ON bills.house_id = houses.id
+        // INNER JOIN users on users.id = houses.user_id
+        // GROUP BY users.name
+        // ");
+
+        // SELECT bills.*, users.name, users.id, sum(bills.totalPrice) as total FROM `bills`
+        // INNER JOIN houses ON bills.house_id = houses.id
+        // INNER JOIN users on users.id = houses.user_id
+        // GROUP BY users.name
+        // HAVING users.id = 17
+
+        $totalPriceByUser = DB::table('bills')
+        ->join('houses', 'bills.house_id', 'houses.id')
+        ->join('users', 'users.id', 'houses.user_id')
+        ->select('bills.*', 'users.name', 'users.id', DB::raw('SUM(bills.totalPrice) as total'))
+        ->groupBy('users.name')
+        ->having('users.id','=', $id)
+        ->get();
+        ;
+
+        // dd($totalPriceByUser);
+
+
+        return view('frontend.house.house-order', compact('user','totalPriceByUser'));
     }
 
 }

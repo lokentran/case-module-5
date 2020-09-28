@@ -123,10 +123,14 @@
                                 @if (\Illuminate\Support\Facades\Auth::user())
                                 <ul class="dropdown">
                                     <li><a href="{{ route('login.logout') }}">Đăng xuất</a></li>
-                                    <li><a
-                                            href="{{ route('profile.show', \Illuminate\Support\Facades\Auth::user()->id) }}">Thông
-                                            tin của bạn</a></li>
-
+                                    <li>
+                                        <a href="{{ route('profile.show', \Illuminate\Support\Facades\Auth::user()->id) }}">Thông tin của bạn</a>
+                                    </li>
+                                    @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
+                                    <li>
+                                        <a href="{{ route('user.showListHouse', \Illuminate\Support\Facades\Auth::user()->id ) }}">Xem khách thuê nhà</a>
+                                    </li>
+                                    @endif
                                 </ul>
                                 @endif
                             </li>

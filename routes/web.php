@@ -25,15 +25,16 @@ Route::get('/logout', '\App\Http\Controllers\UserController@logout')->name('logi
 Route::get('/register', '\App\Http\Controllers\UserController@showFormRegister');
 Route::post('/register', '\App\Http\Controllers\UserController@register')->name('register');
 
-Route::get('/user/{id}/profile', '\App\Http\Controllers\UserController@showProfile')->name('profile.show');
-Route::post('/user/{id}/profile', '\App\Http\Controllers\UserController@updateProfile')->name('profile.update');
+Route::get('/user/{id}/profile', '\App\Http\Controllers\UserController@showProfile')->name('profile.show')->middleware('auth');
+Route::post('/user/{id}/profile', '\App\Http\Controllers\UserController@updateProfile')->name('profile.update')->middleware('auth');
 
-Route::get('/user/{id}/change-pass', '\App\Http\Controllers\UserController@showFormChangePass')->name('user.showPass');
-Route::post('/user/{id}/change-pass', '\App\Http\Controllers\UserController@updatePass')->name('user.updatePass');
+Route::get('/user/{id}/change-pass', '\App\Http\Controllers\UserController@showFormChangePass')->name('user.showPass')->middleware('auth');
+Route::post('/user/{id}/change-pass', '\App\Http\Controllers\UserController@updatePass')->name('user.updatePass')->middleware('auth');
+Route::get('/user/{id}/list-house', '\App\Http\Controllers\HouseController@showListHouse')->name('user.showListHouse')->middleware('auth');
+
 
 Route::post('/search', '\App\Http\Controllers\HouseController@search')->name('house.search');
 
-// Route::get('/users', '\App\Http\Controllers\FrontendController@showIndex')->name('index')->middleware(\App\Http\Middleware\CheckUser::class);
 Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('index');
 
 Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware('auth');

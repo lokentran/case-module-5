@@ -1,7 +1,7 @@
-#login, #register, .add-house, .user-profile, .reset-password {
+#login, #register, .add-house, .user-profile, .reset-password, .box-background {
     position: relative;
     background-image: url(img/bg-img/hero3.jpg);
-    height: 100vh;
+    /* height: 100vh; */
     background-position: center;
     background-size: cover;
     display: flex;
@@ -9,20 +9,20 @@
 }
 
 
-.form-login, .form-register, .box-add-house, .box-profile, .box-reset-pass {
+.form-login, .form-register, .box-add-house, .box-profile, .box-reset-pass, .boxIn-background {
     background: #ffffffd4;
     padding: 30px 15px 50px;
     border-radius: 10px;
     position: relative;
     z-index: 2;
-    margin-top: 140px;
+    margin: 160px 0 60px;
 }
 
 .form-register {
     margin-bottom: 50px;
 }
 
- .user-profile {
+ .user-profile,.box-background {
     height: auto;
 }
 #register {
@@ -200,4 +200,10 @@ input.totalPrice {
 .profile-tab p{
     font-weight: 600;
     color: #0062cc;
+}
+
+/*  */
+
+.single-featured-property .property-content {
+    min-height: 260px;
 }

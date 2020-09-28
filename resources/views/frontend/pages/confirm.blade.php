@@ -25,7 +25,20 @@
                                 <div class="col-md-6">
                                     <div class="listings-content">
                                         <!-- Price -->
-                                        <img src="{{ asset('/storage/'.$house->image) }}" alt="">
+                                        <div class="single-listings-sliders owl-carousel">
+                                            {{-- <!-- Single Slide -->
+                                            <img src="{{ asset('/storage/'.$house->image) }}" alt="">
+                                            <!-- Single Slide -->
+                                            <img src="{{ asset('/storage/'.$house->image) }}" alt=""> --}}
+
+                                            @foreach($house->images as $image)
+                                                <img
+                                                    src="{{asset('storage/'.$image->image)}}"
+                                                    class="img-fluid"
+                                                >
+                                             @endforeach
+
+                                        </div>
                                         <div class="list-price">
                                             <p>{{ number_format($house->price,0,",",".") }} VNĐ/Ngày</p>
                                         </div>
@@ -93,7 +106,7 @@
 
                                             <div class="form-group">
                                                 <label for=""><b>Tổng số tiền: {{ number_format($totalPrice,0,",",".") }} VNĐ ({{ $subDay }} ngày)</b></label>
-                                                <input hidden class="totalPrice" type="text" readonly value="{{ number_format($totalPrice,0,",",".") }}" name="totalPrice">
+                                                <input hidden class="totalPrice" type="text" readonly value="{{ $totalPrice }}" name="totalPrice">
                                             </div>
 
                                             <div class="form-group">

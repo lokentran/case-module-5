@@ -9,4 +9,11 @@ class Bill extends Model
 {
     use HasFactory;
     protected $table = "bills";
+
+    public function user()
+    {
+        return $this->belongsTo('\App\Models\User', 'user_id', 'id');
+    }
+
+    
 }

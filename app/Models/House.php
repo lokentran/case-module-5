@@ -21,5 +21,9 @@ class House extends Model
         return $this->hasMany('\App\Models\Image', 'house_id', 'id');
     }
 
+    public function bills ()
+    {
+        return $this->hasMany('\App\Models\Bill', 'house_id', 'id');
+    }
 
 }

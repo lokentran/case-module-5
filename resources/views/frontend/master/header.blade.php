@@ -126,11 +126,18 @@
                                     <li>
                                         <a href="{{ route('profile.show', \Illuminate\Support\Facades\Auth::user()->id) }}">Thông tin của bạn</a>
                                     </li>
+
                                     @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
-                                    <li>
-                                        <a href="{{ route('user.showListHouse', \Illuminate\Support\Facades\Auth::user()->id ) }}">Xem khách thuê nhà</a>
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('user.showCustomerHouse', \Illuminate\Support\Facades\Auth::user()->id ) }}">Xem khách thuê nhà</a>
+                                        </li>
                                     @endif
+
+
+                                    {{-- <li>
+                                        <a href="{{ route('user.showListHouse', \Illuminate\Support\Facades\Auth::user()->id ) }}">Lịch sử đặt nhà</a>
+                                    </li> --}}
+
                                 </ul>
                                 @endif
                             </li>

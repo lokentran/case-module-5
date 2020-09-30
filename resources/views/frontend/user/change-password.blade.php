@@ -14,7 +14,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">
-                                Old Password</label>
+                                Mật khẩu cũ</label>
                             <input name="current-password" type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             @if($errors->has('current-password'))
                                 <p class="text-danger">{{$errors->first('current-password')}}</p>
@@ -23,22 +23,22 @@
                     <hr>
 
                         <div class="form-group">
-                            <label for="exampleInputPassword1">New Password</label>
+                            <label for="exampleInputPassword1">Mật khẩu mới</label>
                             <input name="new-password" type="password" class="form-control" id="exampleInputPassword1">
                             @if($errors->has('new-password'))
                                 <p class="text-danger">{{$errors->first('new-password')}}</p>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Confirm Password</label>
+                            <label for="exampleInputPassword1">Xác nhận lại mật khẩu mới</label>
                             <input name="new-password_confirmation" type="password" class="form-control" id="exampleInputPassword1">
                             @if($errors->has('new-password_confirmation'))
                                 <p class="text-danger">{{$errors->first('new-password_confirmation')}}</p>
                             @endif
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Change Password</button>
-                        <button id="back-add" class="btn btn-secondary" onclick="window.history.go(-1); return false;">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <button id="back-add" class="btn btn-secondary" onclick="window.history.go(-1); return false;">Quay lại</button>
                     </form>
 
                 </div>

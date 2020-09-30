@@ -15,7 +15,7 @@ class BillController extends Controller
         $subDay = \Carbon\Carbon::parse( Session::get('userRent')['checkIn'])->diffInDays( Session::get('userRent')['checkOut'] );
         $house = \App\Models\House::findOrFail(Session::get('userRent')['house_id']);
         $totalPrice = $subDay * $house->price;
-        return view('frontend.pages.confirm', compact('house', 'totalPrice', 'subDay'));
+        return view('frontend.house.confirm', compact('house', 'totalPrice', 'subDay'));
     }
 
     public function confirmPost(\App\Http\Requests\ConfirmRequest $request) {
@@ -33,6 +33,6 @@ class BillController extends Controller
     }
 
     public function success() {
-        return view('frontend.pages.confirm-success');
+        return view('frontend.house.confirm-success');
     }
 }

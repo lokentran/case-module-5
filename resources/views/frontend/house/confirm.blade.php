@@ -85,7 +85,7 @@
 
                                             <div class="form-group">
                                                 <label for="">Ngày đặt phòng</label>
-                                                <input class="form-control" type="date" name="checkIn" value="{{ Session::get('userRent')['checkIn'] }}">
+                                                <input readonly class="form-control" type="date" name="checkIn" value="{{ Session::get('userRent')['checkIn'] }}">
                                                 @if ($errors->has('checkIn'))
                                                 <div class="alert alert-danger">
                                                     <strong>{{ $errors->first('checkIn') }}</strong>
@@ -94,7 +94,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Ngày trả phòng</label>
-                                                <input class="form-control" type="date" name="checkOut" value="{{ Session::get('userRent')['checkOut'] }}">
+                                                <input readonly class="form-control" type="date" name="checkOut" value="{{ Session::get('userRent')['checkOut'] }}">
                                                 @if ($errors->has('checkOut'))
                                                 <div class="alert alert-danger">
                                                     <strong>{{ $errors->first('checkOut') }}</strong>
@@ -117,7 +117,7 @@
                                                 </div>
                                             </div>
 
-                                            <button disabled class="btn btn-secondary">Cập nhật</button>
+                                            <a href="{{ route('house.detail',$house->id ) }}" class="btn btn-secondary" >Cập nhật</a>
                                             <button class="btn btn-success" type="submit"
                                                 @if (\Illuminate\Support\Facades\Auth::check())
 

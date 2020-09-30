@@ -126,7 +126,7 @@
                         <button class="btn btn-success" type="submit" @if (\Illuminate\Support\Facades\Auth::check())
 
                             @else
-                            disabled
+                            href="{{ route('login.login') }}"
                             @endif
                             >
                             Đặt phòng</button>

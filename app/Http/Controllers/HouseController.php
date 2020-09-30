@@ -6,16 +6,17 @@ use App\Models\House;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\AddHouseRequest;
 use Illuminate\Support\Facades\Session;
 
 
 class HouseController extends Controller
 {
     function showFormAdd() {
-        return view('frontend.pages.add-house');
+        return view('frontend.house.add-house');
     }
 
-    function postHouse(Request $request) {
+    function postHouse(AddHouseRequest $request) {
         $house = new House();
         $house->name = $request->name;
         $house->price = $request->price;
@@ -70,7 +71,7 @@ class HouseController extends Controller
 
     public function detail($id) {
         $house = \App\Models\House::findOrFail($id);
-        return view('frontend.pages.detail-house', compact('house'));
+        return view('frontend.house.detail-house', compact('house'));
     }
 
     public function rentHome(Request $request) {
@@ -87,6 +88,7 @@ class HouseController extends Controller
 
 
     public function search(Request $request) {
+
         $name = $request->name;
         $address = $request->address;
         $minPrice = $request->minPrice;
@@ -94,6 +96,7 @@ class HouseController extends Controller
         $typeHouse = $request->typeHouse;
         $typeRoom = $request->typeRoom;
         $bathroom = $request->bathroom;
+        $bedroom = $request->bedroom;
 
         // dd($request->all());
 
@@ -132,7 +135,7 @@ class HouseController extends Controller
         return view('frontend.index', compact('houses'));
     }
 
-    public function showListHouse($id) {
+    public function showCustomerHouse($id) {
         $user = \App\Models\User::findOrFail($id);
         // $money = DB::table('bills')->select(DB::raw('sum(totalPrice)'))->get();
         // $totalPriceByUser = DB::select("SELECT bills.*, users.name, sum(bills.totalPrice) as total FROM `bills`
@@ -154,12 +157,14 @@ class HouseController extends Controller
         ->groupBy('users.name')
         ->having('users.id','=', $id)
         ->get();
-        ;
 
-        // dd($totalPriceByUser);
-
-
-        return view('frontend.house.house-order', compact('user','totalPriceByUser'));
+        return view('frontend.house.house-customer', compact('user','totalPriceByUser'));
     }
+
+    public function showListHouse() {
+        return view('frontend.house.house-order');
+    }
+
+
 
 }

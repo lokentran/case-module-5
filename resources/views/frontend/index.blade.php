@@ -13,31 +13,31 @@
                             <p>Search for your home</p>
                         </div>
                         <!-- Search Form -->
-                        <form action="/search" method="post" id="advanceSearch">
+                        <form action="/search" method="POST" id="advanceSearch">
                             @csrf
                             <div class="row">
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder="Tên">
+                                        <input type="text" class="form-control" name="name" placeholder="Tên" value="{{ request('name') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="address" placeholder="Địa chỉ">
+                                        <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="{{ request('address') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <input type="number" min="100000" step="50000" class="form-control" name="minPrice" placeholder="Gía thấp nhất">
+                                        <input type="number" min="100000"  class="form-control" name="minPrice" placeholder="Gía thấp nhất" value="{{ request('minPrice') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-12 col-md-4 col-lg-3">
                                     <div class="form-group">
-                                        <input type="number" min="500000" step="50000"  class="form-control" name="maxPrice" placeholder="Giá cao nhất">
+                                        <input type="number" min="500000"  class="form-control" name="maxPrice" placeholder="Giá cao nhất" value="{{ request('maxPrice') }}">
                                     </div>
                                 </div>
 
@@ -78,7 +78,7 @@
 
                                 <div class="col-12 box-center">
                                     <div class="form-group mb-0">
-                                        <button type="submit" class="btn south-btn">Search</button>
+                                        <button type="submit" class="btn south-btn">Tìm kiếm</button>
                                     </div>
                                 </div>
                             </div>
@@ -101,66 +101,75 @@
 
             <div class="row">
                 {{-- {{ dd($houses[3]->images()->first()) }} --}}
-                @foreach ($houses as $house)
 
-                        <!-- Single Featured Property -->
-                        <div class="col-12 col-md-6 col-xl-4">
-                            <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
-                                <!-- Property Thumbnail -->
-
-
-                                <div class="property-thumb">
-                                    <a href="{{ route('house.detail', $house->id) }}">
+                @forelse ($houses as $house)
+                                  <!-- Single Featured Property -->
+                                  <div class="col-12 col-md-6 col-xl-4">
+                                    <div class="single-featured-property mb-50 wow fadeInUp" data-wow-delay="100ms">
+                                        <!-- Property Thumbnail -->
 
 
-                                            <img
-                                                src="{{asset('storage/'.$house->images()->first()->image)}}"
-                                                class="img-fluid"
-                                            >
+                                        <div class="property-thumb">
+                                            <a href="{{ route('house.detail', $house->id) }}">
+                                                    <img
+                                                        src="{{asset('storage/'.$house->images()->first()->image)}}"
+                                                        class="img-fluid"
+                                                    >
+                                            </a>
 
 
-                                    </a>
-
-
-                                    <div class="tag">
-                                        <span>For Sale</span>
-                                    </div>
-                                    <div class="list-price">
-                                        <p>{{ number_format($house->price,0,",",".") }} VNĐ/Ngày</p>
-                                    </div>
-                                </div>
-                                <!-- Property Content -->
-                                <div class="property-content">
-                                    <a href="{{ route('house.detail', $house->id) }}">
-                                        <h5>{{ $house->name }}</h5>
-                                    </a>
-
-                                    <p class="location"><img src="img/icons/location.png" alt="">{{ $house->address }}</p>
-                                    <p>{{ $house->description }}</p>
-                                    <div class="property-meta-data d-flex align-items-end justify-content-between">
-                                        <div class="new-tag">
-                                            <img src="img/icons/new.png" alt="">
+                                            <div class="tag">
+                                                <span>For Sale</span>
+                                            </div>
+                                            <div class="list-price">
+                                                <p>{{ number_format($house->price,0,",",".") }} VNĐ/Ngày</p>
+                                            </div>
                                         </div>
-                                        <div class="bathroom">
-                                            <img src="img/icons/bathtub.png" alt="">
-                                            <span>{{ $house->bathroom }}</span>
-                                        </div>
-                                        <div class="garage">
-                                            <img src="img/icons/garage.png" alt="">
-                                            <span>{{ $house->bedroom }}</span>
-                                        </div>
-                                        <div class="space">
-                                            <img src="img/icons/space.png" alt="">
-                                            <span>120 sq ft</span>
+                                        <!-- Property Content -->
+                                        <div class="property-content">
+                                            <a href="{{ route('house.detail', $house->id) }}">
+                                                <h5>{{ $house->name }}</h5>
+                                            </a>
+
+                                            <p class="location"><img src="img/icons/location.png" alt="">{{ $house->address }}</p>
+                                            <p>{{ \Illuminate\Support\Str::words($house->description, 15, ' [...]') }}</p>
+                                            <div class="property-meta-data d-flex align-items-end justify-content-between">
+                                                <div class="new-tag">
+                                                    <img src="img/icons/new.png" alt="">
+                                                </div>
+                                                <div class="bathroom">
+                                                    <img src="img/icons/bathtub.png" alt="">
+                                                    <span>{{ $house->bathroom }}</span>
+                                                </div>
+                                                <div class="garage">
+                                                    <img src="img/icons/garage.png" alt="">
+                                                    <span>{{ $house->bedroom }}</span>
+                                                </div>
+                                                <div class="space">
+                                                    <img src="img/icons/space.png" alt="">
+                                                    <span>120 sq ft</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                @empty
+                    <div class="col-md-12">
+                        <p class="text-center">Không tìm thấy kết quả nào phù hợp với yêu cầu của bạn!</p>
+                    </div>
+                @endforelse
 
-                @endforeach
 
 
+
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 box-paginate">
+                    {{-- {{ $houses->links() }} --}}
+                </div>
             </div>
         </div>
     </section>

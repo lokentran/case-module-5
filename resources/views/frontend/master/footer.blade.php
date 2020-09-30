@@ -9,7 +9,7 @@
                     <div class="footer-widget-area mb-100">
                         <!-- Widget Title -->
                         <div class="widget-title">
-                            <h6>About Us</h6>
+                            <h6>Giới thiệu</h6>
                         </div>
 
                         <img src="img/bg-img/footer.jpg" alt="">
@@ -25,7 +25,7 @@
                     <div class="footer-widget-area mb-100">
                         <!-- Widget Title -->
                         <div class="widget-title">
-                            <h6>Hours</h6>
+                            <h6>Giờ làm việc</h6>
                         </div>
                         <!-- Office Hours -->
                         <div class="weekly-office-hours">
@@ -49,7 +49,7 @@
                     <div class="footer-widget-area mb-100">
                         <!-- Widget Title -->
                         <div class="widget-title">
-                            <h6>Useful Links</h6>
+                            <h6>Link hữu ích</h6>
                         </div>
                         <!-- Nav -->
                         <ul class="useful-links-nav d-flex align-items-center">
@@ -75,7 +75,7 @@
                     <div class="footer-widget-area mb-100">
                         <!-- Widget Title -->
                         <div class="widget-title">
-                            <h6>Featured Properties</h6>
+                            <h6>Phòng nổi bật</h6>
                         </div>
                         <!-- Featured Properties Slides -->
                         <div class="featured-properties-slides owl-carousel">

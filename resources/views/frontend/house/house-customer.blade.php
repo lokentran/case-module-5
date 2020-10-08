@@ -24,8 +24,8 @@
                                     <tr>
                                         <td scope="col">{{ $house->name }}</td>
                                         <td scope="col">{{ $bill->user->name }}</td>
-                                        <td scope="col">{{ $bill->checkIn }}</td>
-                                        <td scope="col">{{ $bill->checkOut }}</td>
+                                        <td scope="col">{{ \Carbon\Carbon::parse($bill->checkIn)->format('d/m/Y')}}</td>
+                                        <td scope="col">{{ \Carbon\Carbon::parse($bill->checkOut)->format('d/m/Y')}}</td>
                                         <td scope="col"><b>{{ number_format($bill->totalPrice,0,",",".") }}</b> VNĐ</td>
                                     </tr>
                                 @empty

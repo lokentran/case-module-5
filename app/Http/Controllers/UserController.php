@@ -19,22 +19,6 @@ class UserController extends Controller
     }
 
     function login(\App\Http\Requests\LoginRequest $request) {
-        // $email = $request->email;
-        // $password =md5($request->password);
-        // $user = User::where([
-        //     ['email', '=', $email],
-        //     ['password', '=', $password],
-        // ])->first();
-        // if ($user) {
-        //     Session::put('user', $user);
-        //     // echo "<pre>";
-        //     // print_r(Session::get('user')->email);
-        //     return redirect()->route('index');
-        // } else {
-        //     Session::put('mess', 'Sai tên đăng nhập hoặc mật khẩu!');
-        //     return redirect()->route('login.show');
-        // }
-
         $data = [
             'email' => $request->email,
             'password' => $request->password
@@ -42,9 +26,14 @@ class UserController extends Controller
 
         if (!Auth::attempt($data)) {
             return back();
-        } else {
-            return redirect()->route('index');
         }
+
+        if(Auth::user()->is_admin == 1) {
+            return \redirect()->route('admin.index');
+        }
+
+        return redirect()->route('index');
+
     }
 
     public function logout() {

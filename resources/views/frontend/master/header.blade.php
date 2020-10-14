@@ -106,7 +106,7 @@
                             @if (\Illuminate\Support\Facades\Auth::user())
                                 @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
                                 <li>
-                                    <a href="{{ route('house.add') }}">Đăng nhà cho thuê</a>
+                                    <a href="{{ route('house.add', \Illuminate\Support\Facades\Auth::user()->id) }}">Đăng nhà cho thuê</a>
                                 </li>
                                 @endif
                             @endif
@@ -130,6 +130,12 @@
                                     @if (\Illuminate\Support\Facades\Auth::user()->role == 1)
                                         <li>
                                             <a href="{{ route('user.showCustomerHouse', \Illuminate\Support\Facades\Auth::user()->id ) }}">Xem khách thuê nhà</a>
+                                        </li>
+                                    @endif
+
+                                    @if (\Illuminate\Support\Facades\Auth::user()->role == 2)
+                                        <li>
+                                            <a href="{{ route('user.showHouseList', \Illuminate\Support\Facades\Auth::user()->id) }}">Lịch sử thuê nhà</a>
                                         </li>
                                     @endif
 

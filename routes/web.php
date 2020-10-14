@@ -29,13 +29,17 @@ Route::get('/', '\App\Http\Controllers\FrontendController@showIndex')->name('ind
 Route::post('/search', '\App\Http\Controllers\HouseController@search')->name('house.search');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('/{id}/profile', '\App\Http\Controllers\UserController@showProfile')->name('profile.show');
-        Route::post('/{id}/profile', '\App\Http\Controllers\UserController@updateProfile')->name('profile.update');
-        Route::get('/{id}/change-pass', '\App\Http\Controllers\UserController@showFormChangePass')->name('user.showPass');
-        Route::post('/{id}/change-pass', '\App\Http\Controllers\UserController@updatePass')->name('user.updatePass');
-        Route::get('/{id}/list-house', '\App\Http\Controllers\HouseController@showCustomerHouse')->name('user.showCustomerHouse');
-        Route::get('/{id}/order-house', '\App\Http\Controllers\HouseController@showListHouse')->name('user.showListHouse');
+    Route::group(['prefix' => 'user/{id}'], function () {
+        Route::get('/profile', '\App\Http\Controllers\UserController@showProfile')->name('profile.show');
+        Route::post('/profile', '\App\Http\Controllers\UserController@updateProfile')->name('profile.update');
+        Route::get('/change-pass', '\App\Http\Controllers\UserController@showFormChangePass')->name('user.showPass');
+        Route::post('/change-pass', '\App\Http\Controllers\UserController@updatePass')->name('user.updatePass');
+        Route::get('/customer-list', '\App\Http\Controllers\HouseController@showCustomerHouse')->name('user.showCustomerHouse');
+        Route::post('/customer-list/search', '\App\Http\Controllers\HouseController@searchCustomerHouse')->name('user.searchCustomerHouse');
+
+        route::get('/house-list', '\App\Http\Controllers\HouseController@showHouseList')->name('user.showHouseList');
+
+        Route::get('/order-house', '\App\Http\Controllers\HouseController@showListHouse')->name('user.showListHouse');
         Route::get('/add-house', '\App\Http\Controllers\HouseController@showFormAdd')->name('house.add')->middleware('auth');
         Route::post('/add-house', '\App\Http\Controllers\HouseController@postHouse')->name('house.addForm')->middleware('auth');
     });
@@ -47,7 +51,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/{id}/detail/confirm', '\App\Http\Controllers\BillController@confirmPost')->name('house.confirmPost');
         Route::get('/confirm/success', '\App\Http\Controllers\BillController@success')->name('bill.success');
     });
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', '\App\Http\Controllers\BackendController@index')->name('admin.index');
+    });
+
 });
+
+
+
 
 
 

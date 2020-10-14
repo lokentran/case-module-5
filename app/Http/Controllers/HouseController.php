@@ -136,35 +136,97 @@ class HouseController extends Controller
     }
 
     public function showCustomerHouse($id) {
+
         $user = \App\Models\User::findOrFail($id);
-        // $money = DB::table('bills')->select(DB::raw('sum(totalPrice)'))->get();
-        // $totalPriceByUser = DB::select("SELECT bills.*, users.name, sum(bills.totalPrice) as total FROM `bills`
-        // INNER JOIN houses ON bills.house_id = houses.id
-        // INNER JOIN users on users.id = houses.user_id
-        // GROUP BY users.name
-        // ");
-
-        // SELECT bills.*, users.name, users.id, sum(bills.totalPrice) as total FROM `bills`
-        // INNER JOIN houses ON bills.house_id = houses.id
-        // INNER JOIN users on users.id = houses.user_id
-        // GROUP BY users.name
-        // HAVING users.id = 17
-
         $totalPriceByUser = DB::table('bills')
         ->join('houses', 'bills.house_id', 'houses.id')
-        ->join('users', 'users.id', 'houses.user_id')
+        ->join('users', 'houses.user_id', 'users.id')
         ->select('bills.*', 'users.name', 'users.id', DB::raw('SUM(bills.totalPrice) as total'))
         ->groupBy('users.name')
         ->having('users.id','=', $id)
         ->get();
 
-        return view('frontend.house.house-customer', compact('user','totalPriceByUser'));
+        // dd($totalPriceByUser);
+
+        $results = DB::table('bills')
+        ->join('users as users1','bills.user_id', 'users1.id' )
+        ->join('houses', 'bills.house_id', 'houses.id')
+        ->join('users', 'houses.user_id', 'users.id')
+        ->select('bills.*', DB::raw('users1.name as user_rent'), 'houses.name', DB::raw('users.name as user_name')  )
+        // ->whereBetween('bills.checkIn', [date('2020-10-9'), date('2020-10-15')])
+        ->where('houses.user_id', '=', $id)
+        ->get();
+
+        // dd($results);
+
+        return view('frontend.house.house-customer', compact('user','totalPriceByUser','results'));
     }
 
-    public function showListHouse() {
-        return view('frontend.house.house-order');
+    public function searchCustomerHouse(Request $request,$id) {
+
+        // $user = \App\Models\User::findOrFail($id);
+        $totalPriceByUser = DB::table('bills')
+        ->join('houses', 'bills.house_id', 'houses.id')
+        ->join('users', 'houses.user_id', 'users.id')
+        ->select('bills.*', 'users.name', 'users.id', DB::raw('SUM(bills.totalPrice) as total'))
+        ->groupBy('users.name')
+        ->having('users.id','=', $id)
+        ->get();
+
+        $name = $request->name;
+
+        $results = DB::table('bills')
+        ->join('users as users1','bills.user_id', 'users1.id' )
+        ->join('houses', 'bills.house_id', 'houses.id')
+        ->join('users', 'houses.user_id', 'users.id')
+        ->select('bills.*', DB::raw('users1.name as user_rent'), 'houses.name', DB::raw('users.name as user_name')  )
+        ->where('houses.user_id', '=', $id);
+
+
+        if(!empty($name)) {
+            $results = $results->where('houses.name', 'LIKE', '%' . $name . '%');
+        }
+
+        $results = $results->get();
+
+        // dd($results);
+
+        return view('frontend.house.house-customer', compact('results','totalPriceByUser'));
+
     }
 
+    public function showHouseList($id) {
 
+        $houses = DB::table('bills')
+        ->join('users as user_rent', 'bills.user_id', 'user_rent.id')
+        ->join('houses', 'bills.house_id', 'houses.id')
+        ->join('users', 'houses.user_id', 'users.id')
+        ->select('bills.*', 'houses.name as house_name', 'users.name', 'users.phone', 'user_rent.name as rent_name')
+        ->where('user_rent.id', $id)
+        ->get()
+        ;
+
+        $totalPriceByUser = DB::table('bills')
+        ->join('users', 'bills.user_id', 'users.id')
+        ->select('users.*', DB::raw('SUM(bills.totalPrice) as total'))
+        ->groupBy('users.name')
+        ->having('users.id', '=', $id)
+        ->get()
+        ;
+
+        // dd($totalPriceByUser);
+        // dd($houses);
+        return view('frontend.house.house-order', compact('houses','totalPriceByUser'));
+    }
+
+    public function showResult() {
+        $list = DB::table('bills')
+        ->join('houses', 'bills.house_id', 'houses.id')
+        ->join('users', 'houses.user_id', 'users.id')
+        ->select('bills.*', 'users.name', 'users.id', DB::raw('SUM(bills.totalPrice) as total'))
+        ->groupBy('users.name')
+        ->having('users.id','=', $id)
+        ->get();
+    }
 
 }
